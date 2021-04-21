@@ -22,6 +22,6 @@ please refer to the instruction [here](https://github.gatech.edu/kernel-benchmar
 ## Support
 
 Welcome to update and discuss the usecases througth issue tickets and pull requests.
-Or, for any other question, please contact to [Carol Hsu](nosus_hsu@gatech.edu).
+Or, for any other question, please contact to [Carol Hsu](mailto:nosus_hsu@gatech.edu).
 
 
