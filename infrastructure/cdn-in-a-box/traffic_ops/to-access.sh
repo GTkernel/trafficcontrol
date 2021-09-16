@@ -20,7 +20,7 @@
 # Defines bash functions to consistently interact with the Traffic Ops API
 #
 # Build FQDNs
-export CDN_FQDN="$CDN_SUBDOMAIN.$TLD_DOMAIN"
+export CDN_FQDN="$CDN_SUBDOMAIN.ciab.test"
 export INFRA_FQDN="$INFRA_SUBDOMAIN.$TLD_DOMAIN"
 export DB_FQDN="$DB_SERVER.$INFRA_FQDN"
 export DNS_FQDN="kube-dns.kube-system.$TLD_DOMAIN"
@@ -306,13 +306,13 @@ to-add-sslkeys() {
 		json_response=$(to-post 'api/1.4/deliveryservices/sslkeys/add' "$json_request")
 		if [[ -n "$json_response" ]] ; then
 			sleep 3
-			cdn_sslkeys_response=$(to-get "api/1.3/cdns/name/$1/sslkeys.json" | jq '.response[] | length')
-			if ((cdn_sslkeys_response>0)); then
-				break
-			else
-				# Submit it again because the first time doesn't work !
-				sleep 3
-			fi
+			cdn_sslkeys_response=$(to-get "api/1.3/cdns/name/$1/sslkeys.json" | jq '.response | length')
+		#	if ((cdn_sslkeys_response>0)); then
+		#		break
+		#	else
+		#		# Submit it again because the first time doesn't work !
+		#		sleep 3
+		#	fi
 		else
 			sleep 3
 		fi

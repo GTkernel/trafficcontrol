@@ -26,14 +26,14 @@ FROM centos:7
 EXPOSE 443
 ENV MOJO_MODE production
 
-RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
-    rpm --import https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 && \
-    rpm --import https://download.postgresql.org/pub/repos/yum/RPM-GPG-KEY-PGDG && \
-    yum -y update ca-certificates && \
-    yum-config-manager --add-repo https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64 && \
-    yum install -y \
-        epel-release \
-        pgdg-redhat-latest && \
+#RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7 && \
+#    rpm --import https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7 && \
+#    rpm --import https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64 && \
+## Update with new Ops DB
+RUN yum install -y gcc centos-release-scl-rh
+RUN yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm && \
+    yum install -y epel-release libicu libicu-devel clang-devel llvm5.0-devel && \
+    yum install -y install postgresql13 postgresql13-devel && \
     yum install -y \
         bind-utils \
         cpanminus \
@@ -101,7 +101,7 @@ ADD infrastructure/cdn-in-a-box/enroller/server_template.json \
     infrastructure/cdn-in-a-box/traffic_ops/to-access.sh \
     infrastructure/cdn-in-a-box/traffic_ops/generate-certs.sh \
     infrastructure/cdn-in-a-box/traffic_ops/trafficops-init.sh \
-    infrastructure/cdn-in-a-box/variables.env \
+    infrastructure/cdn-in-a-box/variables-k8s.env \
     /
 
 ADD infrastructure/cdn-in-a-box/traffic_ops_data /traffic_ops_data

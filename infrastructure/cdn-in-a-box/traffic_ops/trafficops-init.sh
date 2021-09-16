@@ -37,7 +37,7 @@ done
 
 # NOTE: order dependent on foreign key references, e.g. profiles must be loaded before parameters
 endpoints="cdns types divisions regions phys_locations tenants users cachegroups deliveryservices profiles parameters servers deliveryservice_servers"
-vars=$(awk -F = '/^\w/ {printf "$%s ",$1}' /variables.env)
+vars=$(awk -F = '/^\w/ {printf "$%s ",$1}' /variables-k8s.env)
 
 waitfor() {
     local endpoint="$1"

@@ -163,7 +163,7 @@ services:
     build:
       context: ../..
       dockerfile: infrastructure/cdn-in-a-box/edge/Dockerfile
-    image: cdn-edge-tier
+    image: cdn-edge
     env_file:
       - variables-k8s.env
     volumes:
@@ -175,7 +175,7 @@ services:
     build:
       context: ../..
       dockerfile: infrastructure/cdn-in-a-box/mid/Dockerfile
-    image: cdn-mid-tier
+    image: cdn-mid
     env_file:
       - variables-k8s.env
     volumes:
@@ -208,15 +208,15 @@ services:
       - shared:/shared
 
   # Bind9 DNS services work in combination with the traffic router to route clients to the optimal cache
-  dns:
-    build:
-      context: .
-      dockerfile: dns/Dockerfile
-    image: cdn-dns
-    env_file:
-      - variables-k8s.env
-    volumes:
-      - shared:/shared
+#  dns:
+#    build:
+#      context: .
+#      dockerfile: dns/Dockerfile
+#    image: cdn-dns
+#    env_file:
+#      - variables-k8s.env
+#    volumes:
+#      - shared:/shared
 
 volumes:
   schemas:

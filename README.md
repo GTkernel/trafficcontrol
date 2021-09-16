@@ -1,7 +1,7 @@
 # Apache Traffic Control
 
 [Apache Traffic Control](https://trafficcontrol.apache.org) is an open source CDN implementation.
-It original README is at [here](https://github.gatech.edu/kernel-benchmark-suite/trafficcontrol/blob/master/OFFICIAL_README.md). 
+It original README is at [here](https://github.com/GTkernel/trafficcontrol/blob/master/OFFICIAL_README.md). 
 This README shows you the customized implementation and deployment for our internal usecases.
 
 ## How to start 
@@ -15,8 +15,7 @@ We mainly focus on building "CDN-in-a-Box", you can find it at `./infrastructure
 ### Build and Run
 
 Currently, this CDN-in-a-Box example only support Kubernetes and Docker Compose, 
-please refer to the instruction [here](https://github.gatech.edu/kernel-benchmark-suite/trafficcontrol/blob/master/infrastructure/cdn-in-a-box/k8s).
-
+please refer to the instruction [here](https://github.com/GTkernel/trafficcontrol/blob/master/infrastructure/cdn-in-a-box/k8s).
 
 
 ## Support

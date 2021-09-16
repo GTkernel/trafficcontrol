@@ -30,17 +30,10 @@ COPY $TRAFFIC_OPS_RPM /
 RUN mkdir /etc/cron.d && \
     rpm --install --nodeps --verbose --hash \
         /$(basename $TRAFFIC_OPS_RPM) \
-        http://yum.postgresql.org/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm && \
+        http://yum.postgresql.org/9.6/redhat/rhel-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm  && \
 	yum -y install epel-release && \
 	yum -y install jq bind-utils net-tools gettext perl-JSON-PP nmap-ncat openssl postgresql96 && \
 	yum clean all
-
-#COPY infrastructure/cdn-in-a-box/enroller/server_template.json \
-#    infrastructure/cdn-in-a-box/traffic_ops/config.sh \
-#    infrastructure/cdn-in-a-box/traffic_ops/run-go.sh \
-#    infrastructure/cdn-in-a-box/traffic_ops/to-access.sh \
-#    /
-
 
 COPY enroller/server_template.json \
     traffic_ops/config.sh \
@@ -48,13 +41,6 @@ COPY enroller/server_template.json \
     traffic_ops/to-access.sh \
     /
 
-
-#COPY dns/insert-self-into-dns.sh /usr/local/sbin
-#COPY dns/set-dns.sh /usr/local/sbin
-#RUN chmod 700 /usr/local/sbin/*.sh
-
-#ADD dns/insert-self-into-dns.sh dns/set-dns.sh /usr/local/sbin/
-#ADD dns/insert-self-into-dns.sh /usr/local/sbin/
 
 EXPOSE 443
 WORKDIR /opt/traffic_ops/app

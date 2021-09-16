@@ -19,4 +19,11 @@
 #sh set-dns.sh
 #insert-self-into-dns.sh
 
-exec /docker-entrypoint.sh postgres
+set -o monitor #enable job control
+docker-entrypoint.sh postgres &
+
+#source /to-access.sh
+# Enroll with traffic ops
+#TO_URL="https://$TO_FQDN:$TO_PORT"
+#to-enroll db ALL '' 5432 5432 || (while true; do echo "enroll failed."; sleep 3 ; done)
+fg;
